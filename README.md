@@ -13,11 +13,11 @@ structure:
   batch: true
   sortable: true
   summary:
-    label: 'This is the label'
-    text: 'This is the text'
-    empty: 'Ohne Beschreibung'
-    info: 'This is the info'
-    extra: 'This is the extra content area for longer summaries.'
+    label: '{{ item.tag }}'
+    text: '{{ item.description.kirbytext }}'
+    # empty: 'No descriptoin'
+    # info: 'This is the info'
+    # extra: 'This is the extra content area for longer summaries.'
   fields:
     text:
       type: text
@@ -26,6 +26,9 @@ structure:
       type: textarea
       label: Description
 ```
+
+<img width="590" height="369" alt="grafik" src="https://github.com/user-attachments/assets/4a8997b5-df01-41a7-b152-2a7d525a1459" />
+
 
 - **summary**: content used to give an overview of the item, use Kirby query language to fill those fields.
 - **batch**: enabled batch editing
