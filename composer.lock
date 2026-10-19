@@ -1,0 +1,58 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a20da40e157bf343cfec67551fe5332d",
+    "packages": [
+        {
+            "name": "hananils/kirby-plugins",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hananils/kirby-plugins.git",
+                "reference": "8a6379b185df611cf2acfe705182a14777b7e2c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hananils/kirby-plugins/zipball/8a6379b185df611cf2acfe705182a14777b7e2c9",
+                "reference": "8a6379b185df611cf2acfe705182a14777b7e2c9",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Hananils\\Plugins\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "hana+nils · Büro für Gestaltung",
+                    "email": "nils.hoerrmann@hananils.de"
+                }
+            ],
+            "description": "Plugin manager for Kirby with autoload capacity",
+            "support": {
+                "source": "https://github.com/hananils/kirby-plugins/tree/1.0.0",
+                "issues": "https://github.com/hananils/kirby-plugins/issues"
+            },
+            "time": "2026-10-01T07:31:48+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "hananils/kirby-plugins": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}

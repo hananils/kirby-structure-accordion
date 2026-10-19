@@ -1,0 +1,37 @@
+{
+    "name": "hananils/kirby-structure-accordion",
+    "description": "",
+    "license": "MIT",
+    "type": "kirby-plugin",
+    "version": "1.0.0-dev",
+    "authors": [
+        {
+            "name": "hana+nils · Büro für Gestaltung",
+            "email": "buero@hananils.de"
+        }
+    ],
+    "homepage": "https://kirby.hananils.de/plugins/structure-accordion",
+    "require": {
+        "hananils/kirby-plugins": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/hananils/kirby-plugins.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hananils\\Fields\\": "fields"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "getkirby/composer-installer": true
+        }
+    },
+    "extra": {
+        "installer-name": "structure-accordion"
+    }
+}

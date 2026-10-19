@@ -1,0 +1,9 @@
+{
+    "hananils.structure-accordion.batch.info": "Selected fields will be overwritten, unselected ones will be kept.",
+    "hananils.structure-accordion.batch.submit": "Update selected",
+    "hananils.structure-accordion.batch.title": "Batch edit",
+    "hananils.structure-accordion.edit": "Edit source",
+    "hananils.structure-accordion.empty": "Unknown",
+    "hananils.structure-accordion.new": "New item",
+    "hananils.structure-accordion.toggle": "toggle editor"
+}
