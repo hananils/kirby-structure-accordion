@@ -3,7 +3,9 @@
 namespace Hananils\Fields;
 
 use Kirby\Cms\Structure;
+use Kirby\Cms\StructureObject;
 use Kirby\Content\Content;
+use Kirby\Content\Field;
 use Kirby\Data\Data;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Form\Field\InputField;
@@ -173,27 +175,45 @@ class StructureAccordionField extends InputField implements ProvidesNestedForm
                 'action' => fn() => $field->synchronize()
             ],
             [
-                'pattern' => 'batch-edit',
+                'pattern' => 'replace',
                 'method' => 'POST',
                 'action' => fn() => [
-                    'selected' => $field->batchEdit(
-                        get('selected', []),
-                        get('changes', [])
+                    'items' => $field->parsePlaceholders(
+                        get('selected'),
+                        get('fields')
                     )
                 ]
             ]
         ];
     }
 
-    public function batchEdit($selected, $changes): array
-    {
-        if ($selected === [] || $changes) {
-            return [];
+    public function parsePlaceholders(
+        array $selected = [],
+        array $fields = []
+    ): array {
+        foreach ($selected as $index => $item) {
+            foreach ($fields as $name => $updated) {
+                if (!str_contains($updated, '{{')) {
+                    $selected[$index][$name] = $updated;
+                    continue;
+                }
+
+                $field = new Field($this->model(), $name, $item[$name]);
+                $structureItem = new StructureObject([
+                    'content' => $item,
+                    'parent' => $this->model()
+                ]);
+
+                $selected[$index][$name] = Str::template($updated, [
+                    'field' => $field,
+                    'item' => $structureItem,
+                    'index' => $index,
+                    'position' => $index + 1
+                ]);
+            }
         }
 
-        dump($selected, $changes);
-
-        return [];
+        return $selected;
     }
 
     public function synchronize()
