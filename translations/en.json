@@ -1,9 +1,15 @@
 {
-    "hananils.structure-accordion.batch.info": "Selected fields will be overwritten, unselected ones will be kept.",
+    "hananils.structure-accordion.batch.info": "Select fields you would like to overwrite. Keep those unselected you don't want to change.",
+    "hananils.structure-accordion.batch.placeholders": "Placeholders are used to reference existing content from the current field, the item, its position or index.",
+    "hananils.structure-accordion.batch.placeholders.item": "<code>&lbrace;&lbrace; item &rbrace;&rbrace;</code> allows you to cross-reference sibling field content.",
+    "hananils.structure-accordion.batch.placeholders.field": "<code>&lbrace;&lbrace; field &rbrace;&rbrace;</code> gives you access to the current field and the fields methods. You can use <code>&lbrace;&lbrace; field.value &rbrace;&rbrace;</code> to reference the current value.",
+    "hananils.structure-accordion.batch.placeholders.index": "<code>&lbrace;&lbrace; index &rbrace;&rbrace;</code> provides you with the index of the current item in relation to the selection, starting at zero.",
+    "hananils.structure-accordion.batch.placeholders.position": "<code>&lbrace;&lbrace; position &rbrace;&rbrace;</code> provides you with the position of the current item in relation to the selection, starting at one.",
     "hananils.structure-accordion.batch.submit": "Update selected",
-    "hananils.structure-accordion.batch.title": "Batch edit",
+    "hananils.structure-accordion.batch.title": "Batch editing",
+    "hananils.structure-accordion.batch.help": "Placeholders",
     "hananils.structure-accordion.edit": "Edit source",
-    "hananils.structure-accordion.empty": "Unknown",
+    "hananils.structure-accordion.empty": "Unnamed item",
     "hananils.structure-accordion.new": "New item",
     "hananils.structure-accordion.toggle": "toggle editor"
 }

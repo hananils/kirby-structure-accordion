@@ -36,7 +36,7 @@
                 <header>
                     <small v-if="summaries.label">{{ summaries.label }}</small>
                     <h2 v-if="summaries.text">{{ summaries.text }}</h2>
-                    <h2 v-else>Unnamed item</h2>
+                    <h2 v-else>{{ $t('hananils.structure-accordion.new') }}</h2>
                     <span v-if="summaries.info">{{ summaries.info }}</span>
                 </header>
                 <p v-if="summaries.extra">{{ summaries.extra }}</p>

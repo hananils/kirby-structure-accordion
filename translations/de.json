@@ -1,9 +1,15 @@
 {
-    "hananils.structure-accordion.batch.info": "Ausgewählte Felder werden überschrieben, Inhalte nicht ausgewählter Felder bleiben bestehen.",
+    "hananils.structure-accordion.batch.info": "Hake Felder ab, die überschrieben werden sollen. Lass jene unausgewählt, die nicht verändert werden sollen.",
+    "hananils.structure-accordion.batch.placeholders": "Mit Platzhaltern kann bestehender Inhalt des Feldes oder Eintrages sowie dessen Position oder Index referenziert werden.",
+    "hananils.structure-accordion.batch.placeholders.item": "<code>&lbrace;&lbrace; item &rbrace;&rbrace;</code> erlaubt Querverweise zum Inhalt von Nachbarfeldern.",
+    "hananils.structure-accordion.batch.placeholders.field": "<code>&lbrace;&lbrace; field &rbrace;&rbrace;</code> räumt Zugriff auf das aktuelle Feld und seine Methoden ein. Du kannst auf den aktuellen Feldwert mit <code>&lbrace;&lbrace; field.value &rbrace;&rbrace;</code> zugreifen.",
+    "hananils.structure-accordion.batch.placeholders.index": "<code>&lbrace;&lbrace; index &rbrace;&rbrace;</code> stellt den Index des aktuellen Eintrages im Verhältnis zur aktuellen Auswahl zur Verfügung, beginnend bei Null.",
+    "hananils.structure-accordion.batch.placeholders.position": "<code>&lbrace;&lbrace; position &rbrace;&rbrace;</code> stellt die Position des aktuellen Eintrages im Verhältnis zur aktuellen Auswahl zur Verfügung, beginnend bei Eins.",
     "hananils.structure-accordion.batch.submit": "Auswahl aktualisieren",
     "hananils.structure-accordion.batch.title": "Mehrfachbearbeitung",
+    "hananils.structure-accordion.batch.help": "Platzhalter",
     "hananils.structure-accordion.edit": "Quelle bearbeiten",
-    "hananils.structure-accordion.empty": "Unbekannt",
+    "hananils.structure-accordion.empty": "Unbenannter Eintrag",
     "hananils.structure-accordion.new": "Neuer Eintrag",
     "hananils.structure-accordion.toggle": "Editor umschalten"
 }

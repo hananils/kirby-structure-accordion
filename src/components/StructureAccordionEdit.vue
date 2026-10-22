@@ -6,8 +6,56 @@
         @submit="onSubmit"
     >
         <slot>
-            <h2>{{ $t('hananils.structure-accordion.batch.title') }}</h2>
-            <p>{{ $t('hananils.structure-accordion.batch.info') }}</p>
+            <header>
+                <h2>
+                    {{ $t('hananils.structure-accordion.batch.title') }}
+                </h2>
+                <details>
+                    <summary>
+                        <k-icon type="magic" />
+                        {{ $t('hananils.structure-accordion.batch.help') }}
+                    </summary>
+
+                    <p>
+                        {{
+                            $t(
+                                'hananils.structure-accordion.batch.placeholders'
+                            )
+                        }}
+                    </p>
+                    <ul>
+                        <li
+                            v-html="
+                                $t(
+                                    'hananils.structure-accordion.batch.placeholders.field'
+                                )
+                            "
+                        />
+                        <li
+                            v-html="
+                                $t(
+                                    'hananils.structure-accordion.batch.placeholders.item'
+                                )
+                            "
+                        />
+                        <li
+                            v-html="
+                                $t(
+                                    'hananils.structure-accordion.batch.placeholders.index'
+                                )
+                            "
+                        />
+                        <li
+                            v-html="
+                                $t(
+                                    'hananils.structure-accordion.batch.placeholders.position'
+                                )
+                            "
+                        />
+                    </ul>
+                </details>
+                <p>{{ $t('hananils.structure-accordion.batch.info') }}</p>
+            </header>
 
             <!--
                 This layout is more a hack currently:
