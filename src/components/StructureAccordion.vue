@@ -392,7 +392,8 @@ export default {
         }
 
         /* Switch to grid when label and info are present */
-        &:has(span):has(small) {
+        &:has(span),
+        &:has(small) {
             display: grid;
             grid-template-columns: auto auto;
 
@@ -419,7 +420,7 @@ export default {
     p {
         grid-row-start: 2;
         grid-column-start: 2;
-        margin-block: 0.4rem 0.5rem;
+        margin-block: 0 0.5rem;
         line-height: var(--text-line-height);
     }
 

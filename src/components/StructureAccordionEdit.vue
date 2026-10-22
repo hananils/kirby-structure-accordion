@@ -166,14 +166,91 @@ export default {
 </script>
 
 <style>
-.k-dialog-body > h2 {
-    font-weight: bold;
-    line-height: 1.5;
-}
+.k-dialog-body > header {
+    --negative-dialog-padding: calc(-1 * var(--dialog-padding));
 
-.k-dialog-body > p {
-    margin-block-end: var(--spacing-6);
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    margin-inline: var(--negative-dialog-padding);
+    margin-block: var(--negative-dialog-padding) var(--dialog-padding);
+    border-bottom: 1px solid var(--input-color-border);
+    background: var(--item-color-back);
+    padding: var(--spacing-4) var(--dialog-padding) var(--spacing-4);
     line-height: 1.5;
+
+    h2 {
+        display: flex;
+        grid-row: 1 / 2;
+        grid-column: 1 / -1;
+        justify-content: space-between;
+        align-items: last baseline;
+        margin-bottom: var(--spacing-2);
+        font-weight: var(--font-semi);
+        font-size: var(--text-lg);
+    }
+
+    details {
+        display: flex;
+        grid-row: 1 / 2;
+        grid-column: 1 / -1;
+        flex-direction: column;
+
+        &[open] summary {
+            margin-bottom: var(--spacing-2);
+        }
+    }
+
+    summary {
+        display: inline-flex;
+        position: relative;
+        flex-shrink: 0;
+        align-items: center;
+        align-self: flex-end;
+        gap: var(--spacing-2);
+        margin-top: 0.175rem;
+        border-radius: var(--button-rounded);
+        background-color: var(--panel-color-back);
+        padding-inline: var(--button-padding);
+        height: var(--height-xs);
+        color: var(--button-color-text);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+
+    ul {
+        list-style: none;
+
+        li {
+            margin-block-start: var(--spacing-3);
+            padding-left: 1rem;
+
+            &::before {
+                display: inline-block;
+                margin-left: -1rem;
+                margin: 0.2rem 0.6rem 0.2rem -1rem;
+                border-radius: 50%;
+                background: var(--button-color-text);
+                width: 0.25rem;
+                height: 0.25rem;
+                content: '';
+            }
+
+            code {
+                display: inline-block;
+                border-radius: var(--button-rounded);
+                background-color: var(--panel-color-back);
+                padding-inline: var(--spacing-1);
+                color: var(--button-color-text);
+                font-size: 0.9em;
+            }
+        }
+    }
+
+    details[open] + p {
+        margin-block-start: var(--spacing-3);
+    }
 }
 
 .k-structure-accordion-edit {
