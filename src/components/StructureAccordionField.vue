@@ -22,9 +22,8 @@
                 :title="label"
                 type="field"
             >
-                <span class="k-structure-accordion-select">
+                <span class="k-structure-accordion-select" v-if="isSelecting">
                     <input
-                        v-if="isSelecting"
                         type="checkbox"
                         ref="globalSelection"
                         @click="onGlobalSelect"
@@ -564,24 +563,36 @@ export default {
          * Batch edits selected items.
          */
         editSelected() {
-            // this.$panel.dialog.open(this.endpoints.field + '/batch-edit');
             this.$panel.dialog.open({
                 component: 'k-structure-accordion-edit',
                 props: {
                     fields: this.fields,
+                    items: this.selected,
                     submitButton: this.$t(
                         'hananils.structure-accordion.batch.submit'
                     )
                 },
                 on: {
                     submit: async (data) => {
+                        let edits = await this.$api.post(
+                            this.endpoints.field + '/replace',
+                            {
+                                selected: this.items.filter((item) =>
+                                    this.selected.includes(item.uuid)
+                                ),
+                                fields: data
+                            }
+                        );
+
                         Object.keys(data).forEach((key) => {
-                            this.items.forEach((item) => {
+                            this.items.forEach((item, index) => {
                                 if (!this.selected.includes(item.uuid)) {
                                     return;
                                 }
 
-                                item[key] = data[key];
+                                this.items[index] = edits.items.find(
+                                    (edit) => edit.uuid === item.uuid
+                                );
                             });
                         });
 
