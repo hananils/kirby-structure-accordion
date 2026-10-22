@@ -669,9 +669,13 @@ export default {
          */
         onDuplicate(uuid) {
             let index = this.getIndex(uuid);
-            let duplicate = structuredClone(this.items[index]);
+            let duplicate = this.$helper.object.clone(this.items[index]);
 
             duplicate.uuid = this.$helper.uuid();
+
+            this.summaries[duplicate.uuid] = this.$helper.object.clone(
+                this.summaries[uuid]
+            );
 
             this.insert(index, 'after', duplicate);
             this.save();
