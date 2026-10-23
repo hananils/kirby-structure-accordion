@@ -104,6 +104,8 @@
 
         <k-validator v-bind="{ min, max, required }" :count="items.length">
             <template v-if="hasFields">
+                <k-structure-accordion-search :items="items" />
+
                 <!-- Empty state -->
                 <k-empty
                     v-if="items.length === 0"
@@ -171,9 +173,9 @@
 </template>
 
 <script>
-import StructureAccordion from './StructureAccordion.vue';
 import { props as Field } from '@/components/Forms/Field.vue';
 import batchEditing from '@/mixins/batchEditing';
+import 'rich-input';
 
 export default {
     mixins: [Field, batchEditing],

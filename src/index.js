@@ -1,11 +1,13 @@
 import StructureAccordionField from './components/StructureAccordionField.vue';
 import StructureAccordion from './components/StructureAccordion.vue';
 import StructureAccordionEdit from './components/StructureAccordionEdit.vue';
+import StructureAccordionSearch from './components/StructureAccordionSearch.vue';
 
 panel.plugin('hananils/structure-accordion', {
     components: {
         'k-structure-accordion': StructureAccordion,
-        'k-structure-accordion-edit': StructureAccordionEdit
+        'k-structure-accordion-edit': StructureAccordionEdit,
+        'k-structure-accordion-search': StructureAccordionSearch
     },
     fields: {
         structureaccordion: StructureAccordionField

@@ -6,10 +6,13 @@
         "build": "kirbyup src/index.js"
     },
     "devDependencies": {
-        "kirbyup": "^4.0.0-beta.1",
         "@prettier/plugin-php": "^0.25.0",
+        "kirbyup": "^4.0.0-beta.1",
         "postcss": "^8.5.31",
         "prettier": "^3.9.10",
         "prettier-plugin-css-order": "^2.2.0"
+    },
+    "dependencies": {
+        "rich-input": "^1.4.0"
     }
 }
