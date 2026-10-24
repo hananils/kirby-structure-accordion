@@ -129,7 +129,7 @@
                         :name="name"
                         :data="item"
                         :summaries="summaries[item.uuid]"
-                        :fields="fields"
+                        :fields="$helper.field.subfields(this, fields)"
                         :expanded="expanded.includes(item.uuid)"
                         :disabled="false"
                         :selecting="isSelecting"

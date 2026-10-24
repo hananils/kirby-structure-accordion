@@ -59,7 +59,7 @@
                     ref="form"
                     :autofocus="true"
                     :disabled="disabled || selecting"
-                    :fields="$helper.field.subfields(this, fields)"
+                    :fields="fields"
                     :value="data"
                     :id="id"
                     @input="onInput"
