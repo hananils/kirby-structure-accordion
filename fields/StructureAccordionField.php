@@ -183,8 +183,56 @@ class StructureAccordionField extends InputField implements ProvidesNestedForm
                         get('fields')
                     )
                 ]
+            ],
+            [
+                'pattern' => 'search',
+                'method' => 'POST',
+                'action' => fn() => [
+                    'results' => $field->search(get('query'))
+                ]
             ]
         ];
+    }
+
+    public function search(array $query = [])
+    {
+        $structure = new Structure();
+        $latest = $this->model()->version('latest');
+        $field = $latest->content('current')->get($this->name());
+        $structure = $field->toStructure();
+        $fields = array_keys($this->fields());
+
+        // Apply filters
+        foreach ($query['tokens'] as $token) {
+            if ($token['type'] === 'keyword' && $token['innerValue'] !== '') {
+                $structure = $structure->filterBy(
+                    $token['keyword'],
+                    $token['innerValue']
+                );
+            }
+        }
+
+        // Search text
+        $texts = array_map(
+            function ($token) {
+                return $token['raw'];
+            },
+            array_filter($query['tokens'], function ($token) {
+                return $token['type'] === 'text';
+            })
+        );
+
+        $text = trim(implode(' ', $texts));
+        if ($text !== '') {
+            $structure = $structure->search($text, [
+                'fields' => $fields
+            ]);
+        }
+
+        // Return UUIDs for matches
+        return array_map(function ($item) {
+            return $item['uuid'];
+        }, $structure->toArray());
     }
 
     public function parsePlaceholders(

@@ -1,5 +1,5 @@
 <template>
-    <rich-input placeholder="Search …">
+    <rich-input ref="search" placeholder="Search …" @input="onInput">
         <datalist v-for="(values, key) in keys" :id="key">
             <option v-for="value in values" :value="value"></option>
         </datalist>
@@ -12,6 +12,7 @@ import 'rich-input';
 export default {
     inheritAttrs: false,
     props: {
+        endpoints: Object,
         items: {
             type: Array,
             default: () => []
@@ -44,7 +45,23 @@ export default {
 
     watch: {},
 
-    methods: {}
+    methods: {
+        onInput(event) {
+            const query = event.target.getParsedQuery();
+
+            this.search(query);
+        },
+
+        search(query) {
+            window.panel.api
+                .post(this.endpoints.field + '/search', {
+                    query: query
+                })
+                .then((response) => {
+                    console.log(response);
+                });
+        }
+    }
 };
 </script>
 

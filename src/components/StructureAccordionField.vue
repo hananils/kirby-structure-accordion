@@ -104,7 +104,10 @@
 
         <k-validator v-bind="{ min, max, required }" :count="items.length">
             <template v-if="hasFields">
-                <k-structure-accordion-search :items="items" />
+                <k-structure-accordion-search
+                    :endpoints="endpoints"
+                    :items="items"
+                />
 
                 <!-- Empty state -->
                 <k-empty
