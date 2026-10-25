@@ -11,5 +11,6 @@
     "hananils.structure-accordion.edit": "Edit source",
     "hananils.structure-accordion.empty": "Unnamed item",
     "hananils.structure-accordion.new": "New item",
-    "hananils.structure-accordion.toggle": "toggle editor"
+    "hananils.structure-accordion.toggle": "toggle editor",
+    "hananils.structure-accordion.search": "Type or select field to search"
 }

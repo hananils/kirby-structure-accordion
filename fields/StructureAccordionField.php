@@ -204,10 +204,21 @@ class StructureAccordionField extends InputField implements ProvidesNestedForm
         // Apply filters
         foreach ($query['tokens'] as $token) {
             if ($token['type'] === 'keyword' && $token['innerValue'] !== '') {
-                $structure = $structure->filterBy(
-                    $token['keyword'],
-                    $token['innerValue']
-                );
+                $name = $token['keyword'];
+                $value = $token['innerValue'];
+
+                if (str_contains($this->fields[$name]['type'], 'picker')) {
+                    $structure = $structure->filter(function ($item) use (
+                        $name,
+                        $value
+                    ) {
+                        $data = $item->content()->get($name)->value();
+
+                        return in_array($value, $data);
+                    });
+                } else {
+                    $structure = $structure->filterBy($name, $name);
+                }
             }
         }
 

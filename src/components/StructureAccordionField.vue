@@ -128,12 +128,13 @@
                     v-if="isSearching"
                     :endpoints="endpoints"
                     :items="items"
+                    :fields="fields"
                     @search="onSearch"
                 />
 
                 <!-- Empty state -->
                 <k-empty
-                    v-if="items.length === 0"
+                    v-if="paginatedItems.length === 0"
                     icon="list-bullet"
                     @click="add()"
                 >
@@ -843,6 +844,7 @@ export default {
         },
 
         onSearchToggle() {
+            this.finds = null;
             this.isSearching = !this.isSearching;
         },
 
