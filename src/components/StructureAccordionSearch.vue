@@ -111,7 +111,11 @@ export default {
         onInput(event) {
             const query = event.target.getParsedQuery();
 
-            this.search(query);
+            if (query.raw !== '') {
+                this.search(query);
+            } else {
+                this.$emit('clear');
+            }
         },
 
         search(query) {

@@ -31,6 +31,14 @@
                 </span>
 
                 {{ label }}
+
+                {{
+                    finds && finds.length !== items.length
+                        ? $t('hananils.structure-accordion.search.results', {
+                              count: finds.length
+                          })
+                        : null
+                }}
             </k-label>
         </template>
 
@@ -130,6 +138,7 @@
                     :items="items"
                     :fields="fields"
                     @search="onSearch"
+                    @clear="onSearchClear"
                 />
 
                 <!-- Empty state -->
@@ -425,7 +434,7 @@ export default {
                 page: this.page,
                 offset: offset,
                 limit: this.limit,
-                total: this.items.length,
+                total: this.finds ? this.finds.length : this.items.length,
                 align: 'center',
                 details: true
             };
@@ -841,6 +850,11 @@ export default {
 
         onSearch(results) {
             this.finds = results ?? [];
+        },
+
+        onSearchClear() {
+            this.finds = null;
+            this.isSearching = false;
         },
 
         onSearchToggle() {

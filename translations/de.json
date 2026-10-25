@@ -12,5 +12,6 @@
     "hananils.structure-accordion.empty": "Unbenannter Eintrag",
     "hananils.structure-accordion.new": "Neuer Eintrag",
     "hananils.structure-accordion.toggle": "Editor umschalten",
-    "hananils.structure-accordion.search": "Schreibe oder wähle ein Feld zum Suchen"
+    "hananils.structure-accordion.search": "Schreibe oder wähle ein Feld zum Suchen",
+    "hananils.structure-accordion.search.results": "({count} Ergebnisse)"
 }
