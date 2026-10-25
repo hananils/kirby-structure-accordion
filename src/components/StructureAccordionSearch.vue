@@ -88,7 +88,6 @@ export default {
             }
 
             let items = await this.$helper.items(path, value);
-            console.log(id, value, items);
 
             items.forEach((item, index) => {
                 if (item) {

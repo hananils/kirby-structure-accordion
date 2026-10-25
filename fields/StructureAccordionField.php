@@ -217,7 +217,7 @@ class StructureAccordionField extends InputField implements ProvidesNestedForm
                         return in_array($value, $data);
                     });
                 } else {
-                    $structure = $structure->filterBy($name, $name);
+                    $structure = $structure->filterBy($name, $value);
                 }
             }
         }
