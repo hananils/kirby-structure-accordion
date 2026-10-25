@@ -35,7 +35,15 @@
         </template>
 
         <template v-if="hasFields && !disabled" #options>
-            <div class="k-structure-accordion-batch-actions" v-if="isSelecting">
+            <div class="k-structure-accordion-actions" v-if="isSelecting">
+                <k-button
+                    icon="search"
+                    size="xs"
+                    variant="filled"
+                    :selected="isSearching"
+                    @click="onSearchToggle"
+                />
+
                 <!-- Batch editing/deleting -->
                 <k-button-group
                     :buttons="optionsEditing"
@@ -53,60 +61,74 @@
                     @click="onSelectToggle"
                 />
             </div>
-            <k-button-group v-else layout="collapsed">
-                <!-- Toggle batch editing -->
+
+            <div class="k-structure-accordion-actions" v-else>
                 <k-button
-                    v-if="canSelect"
-                    v-bind="batchEditingToggle"
+                    icon="search"
                     size="xs"
                     variant="filled"
+                    :selected="isSearching"
+                    @click="onSearchToggle"
                 />
 
-                <!-- Add new item -->
-                <k-button
-                    v-if="canModify && canAdd"
-                    :autofocus="autofocus"
-                    :responsive="true"
-                    :text="$t('add')"
-                    icon="add"
-                    variant="filled"
-                    size="xs"
-                    @click="onAdd"
-                />
+                <k-button-group layout="collapsed">
+                    <!-- Toggle batch editing -->
+                    <k-button
+                        v-if="canSelect"
+                        v-bind="batchEditingToggle"
+                        :text="$t('select')"
+                        size="xs"
+                        variant="filled"
+                    />
 
-                <!-- Switch to primary language -->
-                <k-button
-                    v-if="isTranslation"
-                    :autofocus="autofocus"
-                    :responsive="true"
-                    :text="$t('hananils.structure-accordion.edit')"
-                    icon="translate"
-                    variant="filled"
-                    size="xs"
-                    @click="onSwitchToPrimary"
-                />
+                    <!-- Add new item -->
+                    <k-button
+                        v-if="canModify && canAdd"
+                        :autofocus="autofocus"
+                        :responsive="true"
+                        :text="$t('add')"
+                        icon="add"
+                        variant="filled"
+                        size="xs"
+                        @click="onAdd"
+                    />
 
-                <!-- Context menu -->
-                <k-button
-                    icon="dots"
-                    size="xs"
-                    variant="filled"
-                    @click="$refs.options.toggle()"
-                />
-                <k-dropdown-content
-                    ref="options"
-                    :options="options"
-                    @action="onOption"
-                    align-x="end"
-                />
-            </k-button-group>
+                    <!-- Switch to primary language -->
+                    <k-button
+                        v-if="isTranslation"
+                        :autofocus="autofocus"
+                        :responsive="true"
+                        :text="$t('hananils.structure-accordion.edit')"
+                        icon="translate"
+                        variant="filled"
+                        size="xs"
+                        @click="onSwitchToPrimary"
+                    />
+
+                    <!-- Context menu -->
+                    <k-button
+                        icon="dots"
+                        size="xs"
+                        variant="filled"
+                        @click="$refs.options.toggle()"
+                    />
+                    <k-dropdown-content
+                        ref="options"
+                        :options="options"
+                        @action="onOption"
+                        align-x="end"
+                    />
+                </k-button-group>
+            </div>
         </template>
 
         <k-validator v-bind="{ min, max, required }" :count="items.length">
             <template v-if="hasFields">
                 <k-structure-accordion-search
+                    v-if="isSearching"
                     :endpoints="endpoints"
                     :items="items"
+                    @search="onSearch"
                 />
 
                 <!-- Empty state -->
@@ -372,14 +394,20 @@ export default {
          * Returns all items otherwise.
          */
         paginatedItems() {
+            let items = this.items;
+
+            if (this.isSearching && this.finds !== null) {
+                items = items.filter((item) => this.finds.includes(item.uuid));
+            }
+
             if (this.isPaginated) {
-                return this.items.slice(
+                return items.slice(
                     this.pagination.offset,
                     this.pagination.offset + this.limit
                 );
             }
 
-            return this.items;
+            return items;
         },
 
         /**
@@ -408,7 +436,9 @@ export default {
             items: this.value,
             summaries: this.data,
             expanded: [],
-            page: 1
+            page: 1,
+            isSearching: false,
+            finds: null
         };
     },
 
@@ -808,6 +838,14 @@ export default {
             });
         },
 
+        onSearch(results) {
+            this.finds = results ?? [];
+        },
+
+        onSearchToggle() {
+            this.isSearching = !this.isSearching;
+        },
+
         /**
          * Select action.
          */
@@ -854,7 +892,7 @@ export default {
         margin-top: calc(var(--spacing-2) - 2px);
     }
 
-    .k-structure-accordion-batch-actions {
+    .k-structure-accordion-actions {
         display: flex;
         gap: var(--spacing-2);
     }

@@ -58,7 +58,7 @@ export default {
                     query: query
                 })
                 .then((response) => {
-                    console.log(response);
+                    this.$emit('search', response.results);
                 });
         }
     }
@@ -86,6 +86,7 @@ rich-input::part(control) {
 
 rich-input::part(control):focus-within {
     outline: var(--input-outline-focus);
+    box-shadow: none;
     border: none;
 }
 
@@ -95,6 +96,15 @@ rich-input::part(input) {
     font-size: var(--input-font-size);
     line-height: var(--input-leading);
     font-family: var(--input-font-family);
+}
+
+rich-input::part(popover) {
+    box-shadow: var(--dropdown-shadow);
+    border: none;
+    border-radius: var(--dropdown-rounded);
+    background: var(--dropdown-color-bg);
+    padding: var(--dropdown-padding);
+    color: var(--dropdown-color-text);
 }
 
 /* Style artist names */

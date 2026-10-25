@@ -200,7 +200,6 @@ class StructureAccordionField extends InputField implements ProvidesNestedForm
         $latest = $this->model()->version('latest');
         $field = $latest->content('current')->get($this->name());
         $structure = $field->toStructure();
-        $fields = array_keys($this->fields());
 
         // Apply filters
         foreach ($query['tokens'] as $token) {
@@ -212,27 +211,44 @@ class StructureAccordionField extends InputField implements ProvidesNestedForm
             }
         }
 
-        // Search text
-        $texts = array_map(
-            function ($token) {
-                return $token['raw'];
+        // Get texts
+        $search = array_map(
+            function ($text) {
+                return mb_strtolower($text['raw']);
             },
             array_filter($query['tokens'], function ($token) {
                 return $token['type'] === 'text';
             })
         );
 
-        $text = trim(implode(' ', $texts));
-        if ($text !== '') {
-            $structure = $structure->search($text, [
-                'fields' => $fields
-            ]);
+        // Create haystack
+        $haystack = [];
+        foreach ($structure as $item) {
+            $haystack[$item->uuid()->value()] = $this->flatten(
+                $item->toArray()
+            );
         }
 
-        // Return UUIDs for matches
-        return array_map(function ($item) {
-            return $item['uuid'];
-        }, $structure->toArray());
+        // Search
+        $matches = array_filter($haystack, function ($item) use ($search) {
+            return array_all($search, function ($text) use ($item) {
+                return str_contains($item, $text);
+            });
+        });
+
+        // Return UUIDs
+        return array_keys($matches);
+    }
+
+    private function flatten(array $array): string
+    {
+        $result = [];
+
+        array_walk_recursive($array, function ($value) use (&$result) {
+            $result[] = trim(strtolower($value));
+        });
+
+        return implode(' ', $result);
     }
 
     public function parsePlaceholders(
