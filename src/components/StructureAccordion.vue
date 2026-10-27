@@ -165,6 +165,12 @@ export default {
             options.push('-');
 
             options.push({
+                icon: 'clipboard',
+                text: this.$t('copy'),
+                click: 'copy'
+            });
+
+            options.push({
                 icon: 'copy',
                 text: this.$t('duplicate'),
                 click: 'duplicate'
@@ -216,6 +222,9 @@ export default {
                 case 'before':
                 case 'after':
                     this.$emit('insert', event, this.data.uuid);
+                    break;
+                case 'copy':
+                    this.$emit('copy', this.data.uuid, event);
                     break;
                 case 'duplicate':
                     this.$emit('duplicate', this.data.uuid);

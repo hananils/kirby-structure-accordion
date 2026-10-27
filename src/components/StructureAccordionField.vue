@@ -174,6 +174,7 @@
                         @input="onInput"
                         @add="onAdd"
                         @insert="onInsert"
+                        @copy="onCopy"
                         @duplicate="onDuplicate"
                         @remove="onRemove"
                         @toggle="onToggle"
@@ -268,6 +269,14 @@ export default {
                 icon: 'expand',
                 text: this.$t('expand.all'),
                 click: 'expandAll'
+            });
+
+            options.push('-');
+
+            options.push({
+                icon: 'clipboard',
+                text: this.$t('paste'),
+                click: (event) => this.pasteAll(event)
             });
 
             options.push('-');
@@ -589,6 +598,11 @@ export default {
             }
         },
 
+        pasteAll(event) {
+            console.log('paste', event);
+            // console.log('pasteAll', this.$helper.clipboard.read());
+        },
+
         /**
          * Selects or deselects all items depending on the previous selection state.
          */
@@ -718,6 +732,13 @@ export default {
 
             this.items[index] = data;
             this.save();
+        },
+
+        onCopy(uuid, event) {
+            let index = this.getIndex(uuid);
+            let item = this.items[index];
+
+            this.$helper.clipboard.write([item], event);
         },
 
         /**
