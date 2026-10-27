@@ -598,9 +598,45 @@ export default {
             }
         },
 
-        pasteAll(event) {
-            console.log('paste', event);
-            // console.log('pasteAll', this.$helper.clipboard.read());
+        pasteAll() {
+            navigator.clipboard.readText().then((clipText) => {
+                try {
+                    let pasted = JSON.parse(clipText);
+                    let allowed = Object.keys(this.fields);
+
+                    pasted.forEach((item) => {
+                        if (item !== null && typeof item === 'object') {
+                            const filtered = Object.fromEntries(
+                                Object.entries(item).filter(([key, val]) =>
+                                    allowed.includes(key)
+                                )
+                            );
+
+                            if (Object.keys(filtered).length > 0) {
+                                filtered.uuid = this.$helper.uuid();
+
+                                console.log('filtered', filtered);
+
+                                // @todo: merge with onAdd
+                                if (this.prepend === true) {
+                                    // Prepend new item and go to first page
+                                    this.items.unshift(filtered);
+                                    this.page = 1;
+                                } else {
+                                    // Append new item and go to last page
+                                    this.items.push(filtered);
+                                    this.page = Math.ceil(
+                                        this.pagination.total /
+                                            this.pagination.limit
+                                    );
+                                }
+                            }
+                        }
+                    });
+
+                    this.getSummaries(this.items);
+                } catch (error) {}
+            });
         },
 
         /**
@@ -805,7 +841,9 @@ export default {
         /**
          * Option interaction.
          */
-        onOption(event, row, rowIndex) {
+        onOption(event) {
+            console.log('option', event);
+
             switch (event) {
                 case 'expandAll':
                     this.expandAll();
@@ -815,6 +853,9 @@ export default {
                     break;
                 case 'removeAll':
                     this.removeAll();
+                    break;
+                case 'pasteAll':
+                    this.pasteAll(event);
                     break;
             }
         },
