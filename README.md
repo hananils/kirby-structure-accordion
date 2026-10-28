@@ -9,21 +9,21 @@ Structure Accordion is an alternative approach to structured data management in 
 Structure Accordion stores its content in the same format as the core Structure field which makes it easy to switch between field types. Conceptually though, Structure Accordion has a different focus on how content is edited:
 
 1. Items are displayed as a list, similar to how `pagelist` fields present their content. Each item is represented by a summary you can customise in the blueprint. This makes it more suitable for non-tabular data, think of FAQs for example or data sheets containing descriptions.
-2. Each item in the list can be opened individually, which allows editors to interact with multiple items at once making it easy to compare or copy content. This is different to the core Structure field which only ever shows a single item in the drawer.
-3. In addition to that, the field offers the editors options to select and batch edit items. This give editors a way to globally change a field setting for all items at once or – using Kirby query language – a option to manipulate existing content by adding prefixes or suffixes or cross-referencing other fields. It’s a power tool for your data.
-4. On top of these editing capabilities, the field provides a search that let’s you reference values in specific fields in addition to full-text search. This makes it easy to refine your search results.
+2. Each item in the list can be opened individually, which allows editors to interact with multiple items at once, making it easy to compare or copy content. This is different to the core Structure field which only ever shows a single item in the drawer.
+3. In addition to that, the field offers the editors options to select and batch edit items. This gives editors a way to globally change a field setting for all items at once or – using Kirby query language – an option to manipulate existing content by adding prefixes or suffixes or cross-referencing other fields. It’s a power tool for your data.
+4. On top of these editing capabilities, the field provides a search that lets you reference values in specific fields in addition to full-text search. This makes it easy to refine your search results.
 
 Apart from this different user interface approach, the field also handles content differently:
 
-1. Each item automatically gets an UUID added allowing to content to be tracked across languages.
-2. Unlike the core field, Structure Accordion takes the primary language as „source of truth“. Any structural change – like adding, deleting or sorting items – has to be performed in the primary language. These changes are then synchronised to the secondary languages, adding missing items, removing obsolete ones, adjusting the sort order. The secondary languages do only allow for content translations.
+1. Each item automatically gets an UUID added allowing content to be tracked across languages.
+2. Unlike the core field, Structure Accordion takes the primary language as „source of truth“. Any structural change – like adding, deleting or sorting items – has to be performed in the primary language. These changes are then synchronised to the secondary languages, adding missing items, removing obsolete ones, adjusting the sort order. The secondary languages only allow for content translations.
 
 > [!WARNING]
-> Be aware that you will loose translated content if you are switching from a core Structure field with existing content. The core does not include UUIDs in its field which will make Structure Accordion dismiss existing translation as it cannot match any source items to the existing translations. To circumvent this, you’d have to add UUIDs manually first, e. g. using a script that creates matching ids across all languages by position in the structure.
+> Be aware that you will loose translated content if you are switching from a core Structure field with existing content. The core does not include UUIDs in its field which will make Structure Accordion dismiss existing translations, as it cannot match any source items to the existing translations. To circumvent this, you will have to add UUIDs manually first, e. g. using a script that creates matching ids across all languages by position in the structure.
 
 ## Field settings
 
-Structure Accordion offers [the same field settings as the core Structure field](https://getkirby.com/docs/reference/panel/fields/structure#field-properties) with exception to the `columns` property. Instead if offers `summary` settings:
+Structure Accordion offers [the same field settings as the core Structure field](https://getkirby.com/docs/reference/panel/fields/structure#field-properties) with exception to the `columns` property. Instead, it offers `summary` settings:
 
 - `text`: main text description, similar to pages lists
 - `info`: additional info, displayed to the right, similar to pages lists
