@@ -18,7 +18,8 @@ Apart from this different user interface approach, the field also handles conten
 1. Each item automatically gets an UUID added allowing to content to be tracked across languages.
 2. Unlike the core field, Structure Accordion takes the primary language as „source of truth“. Any structural change – like adding, deleting or sorting items – has to be performed in the primary language. These changes are then synchronised to the secondary languages, adding missing items, removing obsolete ones, adjusting the sort order. The secondary languages do only allow for content translations.
 
-> [!WARNING] Be aware that you will loose translated content if you are switching from a core Structure field with existing content. The core does not include UUIDs in its field which will make Structure Accordion dismiss existing translation as it cannot match any source items to the existing translations. To circumvent this, you’d have to add UUIDs manually first, e. g. using a script that creates matching ids across all languages by position in the structure.
+> [!WARNING]
+> Be aware that you will loose translated content if you are switching from a core Structure field with existing content. The core does not include UUIDs in its field which will make Structure Accordion dismiss existing translation as it cannot match any source items to the existing translations. To circumvent this, you’d have to add UUIDs manually first, e. g. using a script that creates matching ids across all languages by position in the structure.
 
 ## Field settings
 
