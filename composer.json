@@ -1,6 +1,6 @@
 {
     "name": "hananils/kirby-structure-accordion",
-    "description": "",
+    "description": "Structure Accordion is an alternative approach to structured data management in Kirby. It features an accordion user interface with inline editor, batch editing functions and advanced search capabilities. For multilingual sites, it automatically synchronises content between languages.",
     "license": "MIT",
     "type": "kirby-plugin",
     "version": "1.0.0-dev",
@@ -12,7 +12,8 @@
     ],
     "homepage": "https://kirby.hananils.de/plugins/structure-accordion",
     "require": {
-        "hananils/kirby-plugins": "dev-main"
+        "hananils/kirby-plugins": "^1.0",
+        "getkirby/composer-installer": "^1.2"
     },
     "repositories": [
         {
@@ -26,12 +27,14 @@
         }
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "getkirby/composer-installer": true
         }
     },
     "extra": {
-        "installer-name": "structure-accordion"
+        "installer-name": "structure-accordion",
+        "kirby": {
+            "compatible": "~6.0"
+        }
     }
 }
