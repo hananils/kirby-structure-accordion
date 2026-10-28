@@ -61,6 +61,8 @@ structure:
 
 ![Overview of the Structure Accordion user interface](./screenshots/structure-accordion_overview.png)
 
+![Batch editing dialog](./screenshots/structure-accordion_batch-editing.png)
+
 ## Installation
 
 By default, plugins in Kirby reside in a special folder located at `/site/plugins`. Each plugin is installed in its proprietary subfolder. This installation can be handled in four different ways: you can either install them manually or manage them using Kirby CLI, Git submodules or Composer. You can install Structure Accordion either way and should choose the method suiting your project best.
