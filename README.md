@@ -3,7 +3,7 @@
 Structure Accordion is an alternative approach to structured data management in Kirby. It features an accordion user interface with inline editor, batch editing functions and advanced search capabilities. For multilingual sites, it automatically synchronises content between languages.
 
 > [!NOTE]
-> This plugin require at least Kirby 6 Beta 1.
+> This plugin requires at least Kirby 6 Beta 1.
 
 # Introduction
 
