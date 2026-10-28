@@ -62,7 +62,7 @@ structure:
 
 ## Snippets and templates
 
-To access a structure field in your templates, you can use the yaml() and toStructure() methods [as you would do with a core Structure Field](https://getkirby.com/docs/reference/panel/fields/structure#how-to-use-in-templates-snippets).
+To access a structure field in your templates, you can use the `yaml()` and `toStructure()` methods [as you would do with a core Structure Field](https://getkirby.com/docs/reference/panel/fields/structure#how-to-use-in-templates-snippets).
 
 ```php
 <?php foreach($page->schedule()->toStructure() as $item): ?>
