@@ -385,6 +385,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        padding-inline-end: 0.65rem;
         padding-block: 0.4rem 0.5rem;
         color: var(--color-text);
         line-height: var(--text-line-height);
@@ -430,7 +431,12 @@ export default {
         grid-row-start: 2;
         grid-column-start: 2;
         margin-block: 0 0.5rem;
+        color: var(--color-text);
         line-height: var(--text-line-height);
+    }
+
+    &:has(> .k-options-dropdown) header {
+        padding-inline-end: 0;
     }
 
     header {
